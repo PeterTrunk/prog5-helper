@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Car->
+make, model,....
+<div th:fragment="field(name,label,type)">
+  <label th:for="${name}" th:text="${label}"></label>
+  <input th:type="${type}" th:path="${name}" th:id="${name}" th:field="*{__${name}__}"/>
+  <span class="error" th:errors="*{__${name}__}"></span>
+</div>
+
+</body>
+</html>

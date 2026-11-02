@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Regisztráció')}"></head>
+<body>
+
+<header th:replace="~{fragments/layout :: header('Registration')}"></header>
+<h1>Regisztráció</h1>
+
+<form method="post"  th:action="@{/register}" th:object="${registerForm}">
+
+    <div th:replace="~{fragments/form-fields :: field('username','Username','text')}"></div>
+    <div th:replace="~{fragments/form-fields :: field('password','Password','password')}"></div>
+    <div th:replace="~{fragments/form-fields :: field('confirmPassword','Confirm password','password')}"></div>
+
+    <button type="submit" th:text="'Regisztrálok'"></button>
+
+</form>
+
+<p>Már van fiókod? <a th:href="@{/login}">Belépés</a></p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Car list')}">
+</head>
+<body>
+<header th:replace="~{fragments/layout :: header('Car list')}"></header>
+<div class="top-bar">
+    <h1 th:text="#{car.list.title}"></h1>
+    <a class="button" th:href="@{/cars/new}" th:text="'+ New car'"></a>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th th:text="'Id'">Id</th>
+        <th th:text="'Make'">Make</th>
+        <th th:text="'Model'">Model</th>
+        <th th:text="'Year'">Year</th>
+        <th th:text="'Actions'">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:if="${cars.isEmpty()}">
+        <td colspan="5" th:text="'No items in the list'"></td>
+    </tr>
+    <tr th:each="car: ${cars}">
+        <td th:text="${car.id}"></td>
+        <td th:text="${car.make}"></td>
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.manufactureYear}"></td>
+        <td>
+            <a class="button" th:href="@{/cars/{id}/edit(id=${car.id})}">Edit</a>
+            <form th:action="@{/cars/{id}/delete(id=${car.id})}" method="post"
+                                      onsubmit="return confirm('Delete this car?');">
+                                    <button type="submit" class="danger">Delete</button>
+                                </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

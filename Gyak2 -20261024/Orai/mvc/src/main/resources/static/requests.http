@@ -1,0 +1,13 @@
+GET http://localhost:8090/students/2
+
+###
+GET http://localhost:8090/students/3
+
+###
+
+POST http://localhost:8090/students
+Content-Type: application/json
+
+{
+  "name": "Timothy"
+}

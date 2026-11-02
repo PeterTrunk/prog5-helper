@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Car page')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header('Car page')}"></header>
+
+<h1 th:text="${car.id == null ? 'New car' : 'Edit car'}"></h1>
+
+<form method="post" th:object="${car}"
+      th:action="${car.id == null} ? @{/cars} : @{/cars/{id}(id=${car.id})}">
+
+    <label for="make">Make</label>
+    <input path="make" id="make" th:field="*{make}"/>
+    <span class="error" th:errors="*{make}"></span>
+
+    <div th:replace="~{fragments/form-fields :: field('model','Model','text')}"></div>
+
+    <div th:insert="~{fragments/form-fields :: field('manufactureYear','ManufactureYear','number')}"></div>
+
+
+        <p>
+            <input type="submit" value="Save"/>
+            <a class="button" th:href="@{/cars}">Cancel</a>
+        </p>
+
+</form>
+</body>
+</html>
